@@ -2,23 +2,25 @@ pipeline{
     
     agent any
 
+parameters {
+  choice choices: ['develop-dynamic-branch-trigger', 'master'], description: 'select branch name', name: 'branchName'
+}
 
 stages{
 //Get the code from GitHub
     stage('CheckoutCode'){
-	steps{
-	   
-	git branch: 'master', credentialsId: 'github_creds', url: 'https://github.com/prashanthkvarma/maven-standalone-application.git'
+        steps{
+            script{
+                def branchName == params.BRANCH_NAME
+                if (branchName == 'master') {
+                    git branch: "${params.branchName}", credentialsId: 'github_creds', url: 'https://github.com/prashanthkvarma/maven-standalone-application.git'
+                } else {
+                    error "Unsupported branch: ${branchName}"
+                }
+            }
+            
+        }
 	}
-	}
-  
-        stage ('unit test'){
-            steps{
-                sh "echo TEST"
-            } //Steps close
-        } // unit test stage close
-  
-  
   
 }// Stages Closing
   
