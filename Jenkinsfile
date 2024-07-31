@@ -16,7 +16,7 @@ stages{
         // when{
         //     expression{params.Checkout}
         // } 
-	    git branch: '${params.branchName}', credentialsId: 'github_creds', url: 'https://github.com/prashanthkvarma/maven-standalone-application.git'
+	    git branch: "${params.branchName}", credentialsId: 'github_creds', url: 'https://github.com/prashanthkvarma/maven-standalone-application.git'
 	}
 	}
   
