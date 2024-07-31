@@ -14,7 +14,7 @@ stages{
     stage('CheckoutCode'){
 	steps{
 		when{
-			expression{params.Checkout}
+			expression {params.Checkout}
 		}
 	    git branch: "${params.branchName}", credentialsId: 'github_creds', url: 'https://github.com/prashanthkvarma/maven-standalone-application.git'
 	}
