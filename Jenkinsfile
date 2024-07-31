@@ -3,7 +3,7 @@ pipeline{
     agent any
 
 parameters {
-  choice choices: ['develop-dynamic-branch-trigger', 'master'], description: 'select branch name', name: 'branchName'
+  choice choices: ['master', 'develop-dynamic-branch-trigger'], description: 'select branch name', name: 'branchName'
 //  string(name: 'BRANCH_NAME', defaultValue: '', description: 'Branch to build')
 }
 
