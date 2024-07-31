@@ -15,7 +15,7 @@ parameters {
                 }
             }
             steps {
-                echo 'Running build for branch: ${env.BRANCH_NAME}'
+                sh "echo Running build for branch: ${env.BRANCH_NAME}"
                 git branch: "${params.branchName}", credentialsId: 'github_creds', url: 'https://github.com/prashanthkvarma/maven-standalone-application.git'
             }
         } // build stage close
@@ -28,7 +28,7 @@ parameters {
                 }
             }
             steps {
-                echo 'Running build for branch: ${env.BRANCH_NAME}'
+                sh "echo Running build for branch: ${env.BRANCH_NAME} "
                 sh "mvn test"
             }
         } // Test stage close
@@ -40,7 +40,7 @@ parameters {
                 }
             }
             steps {
-                echo 'Running build for branch: ${env.BRANCH_NAME}'
+                sh "echo Running build for branch: ${env.BRANCH_NAME}"
                 sh "mvn package"
             }
         } // Package stage close
