@@ -4,9 +4,9 @@ pipeline{
 
 parameters {
   choice choices: ['develop-build-with-parameters'], description: 'select branch name', name: 'branchName'
-  booleanParam(defaultValue: true, description: 'Checkout stage', name: 'Checkout')
-  booleanParam(defaultValue: true, description: 'Unit test stage', name: 'Unit_Test')
-  booleanParam(defaultValue: true, description: 'Package stage', name: 'Package')
+//   booleanParam(defaultValue: true, description: 'Checkout stage', name: 'Checkout')
+//   booleanParam(defaultValue: true, description: 'Unit test stage', name: 'Unit_Test')
+//   booleanParam(defaultValue: true, description: 'Package stage', name: 'Package')
 }
 
 stages{
