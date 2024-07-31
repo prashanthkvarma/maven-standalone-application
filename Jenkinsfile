@@ -11,7 +11,7 @@ stages{
     stage('CheckoutCode'){
         steps{
             script{
-                def branchName == params.BRANCH_NAME
+                def branchName = params.BRANCH_NAME
                 if (branchName == 'master') {
                     git branch: "${params.branchName}", credentialsId: 'github_creds', url: 'https://github.com/prashanthkvarma/maven-standalone-application.git'
                 } else {
