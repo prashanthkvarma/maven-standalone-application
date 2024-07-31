@@ -13,13 +13,13 @@ stages{
         steps{
             script{
                 def BRANCH_NAME = params.branchName
-                if (BRANCH_NAME == 'develop-dynamic-branch-trigger') {
+                if (BRANCH_NAME == 'master') {
                     git branch: "${params.branchName}", credentialsId: 'github_creds', url: 'https://github.com/prashanthkvarma/maven-standalone-application.git'
                     sh "echo 'The branch name is ${env.BRANCH_NAME}' "
                 } 
-                // else {
-                //     error "Unsupported branch: ${branchName}"
-                // }
+                else {
+                    error "Unsupported branch: ${branchName}"
+                }
             }
             
         }
