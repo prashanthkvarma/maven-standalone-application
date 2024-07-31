@@ -32,7 +32,7 @@ stages{
 
     }// Stages Closing
   
-}// Pipelien CLosing
+} // Pipelien CLosing
     //             if (BRANCH_NAME == 'master') {
     //                 sh "echo 'The branch name is ${env.BRANCH_NAME}' "
     //             }                 
@@ -43,4 +43,4 @@ stages{
             
     //     }
 	// }
-  
+}
