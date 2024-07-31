@@ -15,7 +15,7 @@ stages{
                 def BRANCH_NAME = params.branchName
                 if (BRANCH_NAME == 'develop-dynamic-branch-trigger') {
                     git branch: "${params.branchName}", credentialsId: 'github_creds', url: 'https://github.com/prashanthkvarma/maven-standalone-application.git'
-                    sh "echo 'The branch name is ${env.BRANCH_NAME} "
+                    sh "echo 'The branch name is ${env.BRANCH_NAME}' "
                 } 
                 // else {
                 //     error "Unsupported branch: ${branchName}"
