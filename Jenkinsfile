@@ -3,7 +3,7 @@ pipeline{
     agent any
 
 parameters {
-  choice choices: ['develop-*', 'master'], description: 'select branch name', name: 'branchName'
+  choice choices: ['develop-build-with-parameters', 'master'], description: 'select branch name', name: 'branchName'
   booleanParam(defaultValue: true, description: 'Checkout stage', name: 'Checkout')
 //   booleanParam(defaultValue: true, description: 'Unit test stage', name: 'Unit_Test')
 //   booleanParam(defaultValue: true, description: 'Package stage', name: 'Package')
