@@ -1,5 +1,4 @@
-pipeline{
-    
+pipeline {
     agent any
 
 parameters {
@@ -7,41 +6,43 @@ parameters {
 //  string(name: 'BRANCH_NAME', defaultValue: '', description: 'Branch to build')
 }
 
-stages{
-//Get the code from GitHub
-    def BRANCH_NAME = params.branchName
-    if (BRANCH_NAME == 'develop-stage-separation') {
-        stage('CheckoutCode'){
-            steps{
-            //    script{
-                    // def BRANCH_NAME = params.branchName
-                    // if (BRANCH_NAME == 'develop-dynamic-branch-trigger') {
-                    git branch: "${params.branchName}", credentialsId: 'github_creds', url: 'https://github.com/prashanthkvarma/maven-standalone-application.git'
-                    sh "echo 'The branch name is ${env.BRANCH_NAME}' "
-                } // steps closed
+    stages {
+        stage('Build') {
+            when {
+                anyOf {
+                    branch 'develop-stage-separation'
+                    branch 'master'
+                }
+            }
+            steps {
+                echo 'Running build for branch: ${env.BRANCH_NAME}'
+                git branch: "${params.branchName}", credentialsId: 'github_creds', url: 'https://github.com/prashanthkvarma/maven-standalone-application.git'
+            }
+        } // build stage close
+        
+        stage('Test') {
+            when {
+                anyOf {
+                    branch 'develop-stage-separation'
+                    branch 'master'
+                }
+            }
+            steps {
+                echo 'Running build for branch: ${env.BRANCH_NAME}'
+                sh "mvn test"
+            }
+        } // Test stage close
 
-    // stage ('unit test'){
-    //     steps{
-    //     //     when{
-    //     //     expression{params.Unit_Test}
-    //     // } 
-    //         sh "mvn test"
-    //     } //Steps close
-    // } // unit test stage close
-    // }
-
-    }// Stages Closing
-  
-} // Pipelien CLosing
-    //             if (BRANCH_NAME == 'master') {
-    //                 sh "echo 'The branch name is ${env.BRANCH_NAME}' "
-    //             }                 
-    //             // else {
-    //             //     error "Unsupported branch: ${branchName}"
-    //             // }
-    //         }
-            
-    //     }
-	// }
-}
+        stage('Package') {
+            when {
+                anyOf {
+                    branch 'master'
+                }
+            }
+            steps {
+                echo 'Running build for branch: ${env.BRANCH_NAME}'
+                sh "mvn package"
+            }
+        } // Package stage close
+    }
 }
