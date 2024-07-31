@@ -3,7 +3,7 @@ pipeline{
     agent any
 
 parameters {
-  choice choices: ['feature'], description: 'select branch name', name: 'branchName'
+  choice choices: ['develop-build-with-parameters'], description: 'select branch name', name: 'branchName'
   booleanParam(defaultValue: true, description: 'Checkout stage', name: 'Checkout')
   booleanParam(defaultValue: true, description: 'Unit test stage', name: 'Unit_Test')
   booleanParam(defaultValue: true, description: 'Package stage', name: 'Package')
@@ -16,7 +16,7 @@ stages{
         when{
             expression{params.Checkout}
         } 
-	git branch: 'master', credentialsId: 'github_creds', url: 'https://github.com/prashanthkvarma/maven-standalone-application.git'
+	git branch: '${params.branchName}', credentialsId: 'github_creds', url: 'https://github.com/prashanthkvarma/maven-standalone-application.git'
 	}
 	}
   
