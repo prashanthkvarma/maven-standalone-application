@@ -2,7 +2,7 @@ pipeline {
     agent any
 
 parameters {
-  choice choices: ['master', 'develop-stage-separation'], description: 'select branch name', name: 'branchName'
+  choice choices: ['master', 'develop-branch-stage-separation'], description: 'select branch name', name: 'branchName'
 //  string(name: 'BRANCH_NAME', defaultValue: '', description: 'Branch to build')
 }
 
@@ -10,7 +10,7 @@ parameters {
         stage('Build') {
             when {
                 anyOf {
-                    branch 'develop-stage-separation'
+                    branch 'develop-branch-stage-separation'
                     branch 'master'
                 }
             }
@@ -23,7 +23,7 @@ parameters {
         stage('Test') {
             when {
                 anyOf {
-                    branch 'develop-stage-separation'
+                    branch 'develop-branch-stage-separation'
                     branch 'master'
                 }
             }
