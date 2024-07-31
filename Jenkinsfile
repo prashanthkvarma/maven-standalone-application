@@ -14,9 +14,10 @@ stages{
                 def branchName = params.BRANCH_NAME
                 if (branchName == 'master') {
                     git branch: "${params.branchName}", credentialsId: 'github_creds', url: 'https://github.com/prashanthkvarma/maven-standalone-application.git'
-                } else {
-                    error "Unsupported branch: ${branchName}"
-                }
+                } 
+                // else {
+                //     error "Unsupported branch: ${branchName}"
+                // }
             }
             
         }
