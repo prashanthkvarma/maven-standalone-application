@@ -38,8 +38,10 @@ parameters {
       
         stage('Package') {
             when {
-                branch 'develop'
-                branch 'hotfix/*'
+                anyOf{
+                    branch 'develop'
+                    branch 'hotfix/*'
+                }
             }
             steps {
                 sh "mvn clean package"
