@@ -30,7 +30,6 @@ parameters {
                     branch 'hotfix/*'
                 }
             }
-            
             steps {
                 sh "mvn test"
             }
